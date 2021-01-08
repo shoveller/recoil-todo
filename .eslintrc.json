@@ -38,6 +38,32 @@
       {
         "allow": ["warn", "error"]
       }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "max-depth": [
+      "error",
+      {
+        "max": 3
+      }
+    ],
+    "no-unneeded-ternary": [
+      "error",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "sort-imports": "off",
+    "import/order": "off",
+    "semi": [
+      "error",
+      "never"
     ]
   }
 }
