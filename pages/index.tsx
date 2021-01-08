@@ -1,11 +1,11 @@
-import Head from 'next/head'
+import { Head } from 'components/Head/Head'
+import * as MetaTags from 'components/Head/MetaTags'
 
 export const Home = () => {
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+      <Head title="Create Next App">
+        <MetaTags.DisableCache />
       </Head>
 
       <main>
