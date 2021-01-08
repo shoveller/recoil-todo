@@ -1,7 +1,41 @@
 import { Head } from 'components/Head/Head'
 import * as MetaTags from 'components/Head/MetaTags'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+
+interface ILanguageForm {
+  i18n: 'ko' | 'en'
+}
+
+const LanguageForm = () => {
+  const { handleSubmit, register } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+  })
+  const { i18n } = useTranslation()
+  const onSubmit = (values: ILanguageForm) => i18n.changeLanguage(values.i18n)
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="ko">한국어</label>
+      <input
+        type="radio"
+        id="ko"
+        name="i18n"
+        ref={register}
+        defaultChecked={true}
+        value="ko"
+      />
+      <label htmlFor="en">영어</label>
+      <input type="radio" id="en" name="i18n" ref={register} value="en" />
+      <button>변경</button>
+    </form>
+  )
+}
 
 export const Home = () => {
+  const { t } = useTranslation()
+
   return (
     <div className="container">
       <Head title="Create Next App">
@@ -10,8 +44,10 @@ export const Home = () => {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {t('common.hello')} <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <LanguageForm />
 
         <p className="description">
           Get started by editing <code>pages/index.tsx</code>
