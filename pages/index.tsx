@@ -8,10 +8,7 @@ interface ILanguageForm {
 }
 
 const LanguageForm = () => {
-  const { handleSubmit, register } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-  })
+  const { handleSubmit, register } = useForm()
   const { i18n } = useTranslation()
   const onSubmit = (values: ILanguageForm) => i18n.changeLanguage(values.i18n)
 
