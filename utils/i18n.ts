@@ -1,8 +1,8 @@
 import ICU, { IcuInstance } from 'i18next-icu'
 import en from 'i18next-icu/locale-data/en'
 import ko from 'i18next-icu/locale-data/ko'
-import NextI18Next from 'next-i18next'
 import { NextComponentType, NextPageContext } from 'next'
+import NextI18Next from 'next-i18next'
 
 const use: IcuInstance[] = []
 const icu = new ICU({})

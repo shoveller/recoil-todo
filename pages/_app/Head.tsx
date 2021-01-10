@@ -2,7 +2,7 @@ import NextHead from 'next/head'
 import { PropsWithChildren } from 'react'
 
 export interface IHeadProps {
-  title: string
+  title?: string
   description?: string
   url?: string
   ogImage?: string

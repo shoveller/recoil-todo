@@ -1,7 +1,19 @@
 /**
  * 브라우저 캐시를 비활성화하는 메타태그 모음
  */
-import { IHeadProps } from 'components/Head/Head'
+export interface IHeadProps {
+  title: string
+  description?: string
+  url?: string
+  ogImage?: string
+}
+
+export const defaultProps: IHeadProps = {
+  title: '',
+  description: '',
+  url: '',
+  ogImage: '',
+}
 
 export const DisableCache = () => {
   return (
