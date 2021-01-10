@@ -10,7 +10,9 @@ interface ILanguageForm {
 const LanguageForm = () => {
   const { handleSubmit, register } = useForm()
   const { i18n } = useTranslation()
-  const onSubmit = (values: ILanguageForm) => i18n.changeLanguage(values.i18n)
+  const onSubmit = (form: ILanguageForm) => {
+    return i18n.changeLanguage(form.i18n)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -30,20 +32,26 @@ const LanguageForm = () => {
   )
 }
 
-const Index = () => {
-  const { t } = useTranslation()
+const EnvTest = () => {
   const title = `${process.env.NEXT_PUBLIC_TEST_ENV}`
 
+  return <>{title}</>
+}
+
+const TranslateTest = () => {
+  const { t } = useTranslation()
+
+  return <> {t('common.hello')}</>
+}
+
+const Index = () => {
   return (
     <>
       <div className="container">
-        {/*<Head title={title}>*/}
-        {/*  <MetaTags.DisableCache />*/}
-        {/*</Head>*/}
-
         <main>
           <h1 className="title">
-            {t('common.hello')} {title}{' '}
+            <TranslateTest />
+            <EnvTest />
             <a href="https://nextjs.org">Next.js!</a>
           </h1>
 
@@ -243,6 +251,6 @@ export default Index
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 Index.getInitialProps = async (ctx: NextPageContext) => {
   return {
-    namespacesRequired: includeDefaultNamespaces(['common']),
+    namespacesRequired: includeDefaultNamespaces([]),
   }
 }

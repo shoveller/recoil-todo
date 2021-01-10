@@ -6,6 +6,12 @@ import React from 'react'
 import { appWithTranslation } from 'utils/i18n'
 
 class ReactApp extends App<any> {
+  static async getInitialProps(ctx) {
+    const appProps = await App.getInitialProps(ctx)
+
+    return { ...appProps }
+  }
+
   render() {
     const { Component, pageProps } = this.props
 
