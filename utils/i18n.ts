@@ -12,13 +12,14 @@ icu.addLocaleData(en)
 use.push(icu)
 
 const NextI18NextInstance = new NextI18Next({
-  defaultLanguage: 'en',
+  defaultLanguage: 'ko',
   defaultNS: 'common',
   fallbackLng: 'en',
   keySeparator: '###',
   localePath: path.resolve('./public/locales'),
-  otherLanguages: ['ko'],
+  otherLanguages: ['en', 'ko'],
   browserLanguageDetection: false,
+  serverLanguageDetection: false,
   use,
 })
 
