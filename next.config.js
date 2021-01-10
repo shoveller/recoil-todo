@@ -1,7 +1,6 @@
 const { nextI18NextRewrites } = require('next-i18next/rewrites')
 // const env = require("dotenv").config({ path: `${process.env.ENVIRONMENT}` });
 
-
 const localeSubpaths = {}
 
 module.exports = (phase, { defaultConfig }) => {
@@ -21,7 +20,7 @@ module.exports = (phase, { defaultConfig }) => {
     i18n: {
       locales: ['en', 'ko'],
       defaultLocale: 'en',
-      localeDetection: true
+      localeDetection: true,
     },
   }
 }
