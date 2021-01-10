@@ -33,10 +33,11 @@ const LanguageForm = () => {
 
 export const Home = () => {
   const { t } = useTranslation()
+  const title = `${process.env.NEXT_PUBLIC_TEST_ENV}`
 
   return (
     <div className="container">
-      <Head title="Create Next App">
+      <Head title={title}>
         <MetaTags.DisableCache />
       </Head>
 

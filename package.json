@@ -4,9 +4,9 @@
   "license": "MIT",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "start": "env-cmd -f env/.env.local next dev",
+    "build": "env-cmd -f env/.env.development next build",
+    "deploy": "env-cmd -f env/.env.production next build && next start",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js --fix",
@@ -26,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "i18next": "^19.8.4",
     "i18next-icu": "^1.4.2",
     "next": "^10.0.5",
