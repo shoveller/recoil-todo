@@ -2,6 +2,7 @@ import { Head } from 'components/Head/Head'
 import * as MetaTags from 'components/Head/MetaTags'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { includeDefaultNamespaces } from 'utils/i18n'
 
 interface ILanguageForm {
   i18n: 'ko' | 'en'
@@ -247,6 +248,12 @@ export const Home = () => {
       `}</style>
     </div>
   )
+}
+
+Home.getInitialProps = async () => {
+  return {
+    namespacesRequired: includeDefaultNamespaces(['common']),
+  }
 }
 
 export default Home
