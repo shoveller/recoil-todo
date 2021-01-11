@@ -8,7 +8,7 @@ module.exports = (phase, { defaultConfig }) => {
     i18n: {
       locales: ['en', 'ko'],
       defaultLocale: 'en',
-      localeDetection: true
-    }
+      localeDetection: true,
+    },
   }
 }
