@@ -1,16 +1,16 @@
 import { NextPageContext } from 'next'
-import { todoState } from 'repository/useTODO'
+import { newTodo, todos } from 'repository/TODO'
 import { includeDefaultNamespaces } from 'utils/i18n'
-import { RecoilRoot, useRecoilValue } from 'recoil'
-import React, { ReactNode } from 'react'
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil'
+import React, { ReactNode, useCallback } from 'react'
 import { Suspense } from 'react'
 
 const Table = () => {
-  const todos = useRecoilValue(todoState)
+  const list = useRecoilValue(todos)
 
   return (
     <ul>
-      {todos.map((item, index) => {
+      {list.map((item, index) => {
         const key = `row_${index}`
 
         return <li key={key}>{item.message}</li>
@@ -27,15 +27,33 @@ const RenderBrowserOnly = (props: { children: ReactNode }) => {
   return <></>
 }
 
+const Form = (props: { children: ReactNode }) => {
+  const setTodo = useSetRecoilState(newTodo)
+  const onSubmit = useCallback(
+    async (e) => {
+      e.preventDefault()
+      const message = e.target.elements.message.value
+      await setTodo(message)
+      // TODO: 이 다음에 값을 불러와야 하는데, 방법을 모르겠다.
+    },
+    [setTodo]
+  )
+
+  return <form onSubmit={onSubmit}>{props.children}</form>
+}
+
 const Index = () => {
   return (
     <RecoilRoot>
       <div className="container">
-        <RenderBrowserOnly>
-          <Suspense fallback={<h4>로딩중...</h4>}>
-            <Table />
-          </Suspense>
-        </RenderBrowserOnly>
+        <Form>
+          <input type="text" name="message" />
+          <RenderBrowserOnly>
+            <Suspense fallback={<h4>로딩중...</h4>}>
+              <Table />
+            </Suspense>
+          </RenderBrowserOnly>
+        </Form>
       </div>
     </RecoilRoot>
   )
