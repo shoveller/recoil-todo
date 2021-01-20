@@ -1,9 +1,15 @@
 import { NextPageContext } from 'next'
 import { newTodo, todos } from 'repository/TODO'
 import { includeDefaultNamespaces } from 'utils/i18n'
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  RecoilRoot,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil'
 import React, { ReactNode, useCallback } from 'react'
 import { Suspense } from 'react'
+import { test } from 'utils/test'
 
 const Table = () => {
   const list = useRecoilValue(todos)
@@ -43,6 +49,10 @@ const Form = (props: { children: ReactNode }) => {
 }
 
 const Index = () => {
+  const [value] = useRecoilState(test)
+  // eslint-disable-next-line no-console
+  console.log(value)
+
   return (
     <RecoilRoot>
       <div className="container">
